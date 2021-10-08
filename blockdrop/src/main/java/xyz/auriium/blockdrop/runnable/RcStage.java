@@ -46,7 +46,11 @@ public class RcStage implements Recurrable {
                 while (location.getWorld().getBlockAt(location.add(0, yDD, 0)).getType().equals(Material.AIR)) {
                     yDD++;
                 }
+            } else {
+                yDD = 255;
             }
+
+
 
             Location spawn = new Location(location.getWorld(), x, location.getY() + yDD - 1, z);
 

@@ -19,7 +19,7 @@ public class DefaultStage implements Config.Stage {
 
     @Override
     public int saturation() {
-        return 5;
+        return 1;
     }
 
     @Override

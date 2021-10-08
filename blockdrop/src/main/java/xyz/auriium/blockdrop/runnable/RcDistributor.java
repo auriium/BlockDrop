@@ -7,7 +7,7 @@ public class RcDistributor implements Recurrable {
     private final NavigableMap<Integer, Recurrable> map;
     private final Recurrable fallback;
 
-    public RcDistributor(NavigableMap<Integer, Recurrable> map, RcFailSwitch fallback) {
+    public RcDistributor(NavigableMap<Integer, Recurrable> map, Recurrable fallback) {
         this.map = map;
         this.fallback = fallback;
     }

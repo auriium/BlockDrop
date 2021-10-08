@@ -30,17 +30,22 @@ public class BlockDropper implements Dropper {
 
         NavigableMap<Integer, Recurrable> map = new TreeMap<>();
 
+        Recurrable last = null;
         int increment = 1;
 
         for (Config.Stage stage : config.stages()) {
-            map.put(increment, new RcStage(player, stage.blockTypes(), stage.radius(), stage.saturation()));
+            map.put(increment, last = new RcStage(player, stage.blockTypes(), stage.radius(), stage.saturation()));
 
             increment = increment + stage.duration() + 1;
         }
 
+        if (last == null) {
+            throw new IllegalStateException("No blockdrop configuration found!");
+        }
+
         running.set(scheduler.runRepeated(
                 new Recurrable.Fake(
-                        new RcDistributor(map)
+                        new RcDistributor(map, last)
                 )
         , 1, false));
     }
@@ -56,6 +61,6 @@ public class BlockDropper implements Dropper {
 
     @Override
     public boolean isRunning() {
-        return running.get() == null;
+        return running.get() != null;
     }
 }
