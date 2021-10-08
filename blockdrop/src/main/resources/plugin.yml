@@ -1,0 +1,8 @@
+main: xyz.auriium.blockdrop.BlockDrop
+version: 1.0.0-SNAPSHOT
+name: BlockDrop
+author: Auriium
+api-version: 1.17
+
+commands:
+  blockdrop:
